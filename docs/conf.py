@@ -7,7 +7,10 @@ external_projects_current_project = "dcgpu"
 external_projects = ["gpu-operator", "device-metrics-exporter"]
 external_projects_path = "projects.yaml"
 
-html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "instinct.docs.amd.com")
+html_baseurl = os.environ.get(
+    "READTHEDOCS_CANONICAL_URL",
+    os.environ.get("DOCS_BASE_URL", "instinct.docs.amd.com"),
+)
 html_context = {}
 if os.environ.get("READTHEDOCS", "") == "True":
     html_context["READTHEDOCS"] = True
@@ -36,7 +39,12 @@ extensions = ["rocm_docs"]
 
 html_static_path = ['_static', 'images']
 
-html_css_files = ["index.css"]
+# Instinct Design System flavor CSS/JS — loaded directly until the
+# instinct-design flavor is merged into rocm-docs-core upstream.
+# index.css is the landing-page card layout, kept after the flavor sheet
+# so its card rules continue to win on the index page.
+html_css_files = ["instinct-design.css", "index.css"]
+html_js_files = [("instinct-design.js", {"defer": "defer"})]
 
 # Table of contents
 external_toc_path = "./sphinx/_toc.yml"

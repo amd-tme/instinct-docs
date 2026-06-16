@@ -1,0 +1,920 @@
+/*
+ * AMD Instinct Design System — rocm-docs-core flavor
+ *
+ * Maps Instinct Design tokens (from amd-instinct-design/DESIGN.md)
+ * to pydata-sphinx-theme --pst-* CSS variables. Dark-first.
+ *
+ * Source tokens: ~/git/amd-instinct-design/examples/html-slides/tokens.css
+ */
+
+/* ═══════════════════════════════════════════
+   INSTINCT DESIGN TOKENS (raw values)
+   ═══════════════════════════════════════════ */
+:root {
+    --id-teal: #00C2DE;
+    --id-teal-rgb: 0, 194, 222;
+    --id-secondary: #007DB8;
+    --id-background: #131416;
+    --id-foreground: #eaebec;
+    --id-surface-1: #1d1f21;
+    --id-surface-2: #27272a;
+    --id-surface-3: #2d3449;
+    --id-border: #656b72;
+    --id-border-subtle: #222426;
+    --id-muted-text: #b4b9bc;
+    --id-gray-light: #9D9FA2;
+
+    --id-bg-light: #eaebec;
+    --id-fg-light: #131416;
+    --id-surface-1-light: #fafafa;
+    --id-surface-2-light: #FFFFFF;
+    --id-border-light: #c2ccd7;
+    --id-muted-text-light: #5E5E5E;
+
+    --id-radius-sm: 6px;
+    --id-radius-md: 8px;
+    --id-radius-lg: 10px;
+    --id-radius-xl: 14px;
+}
+
+
+/* ═══════════════════════════════════════════
+   DARK THEME (default for instinct-design)
+   ═══════════════════════════════════════════ */
+html[data-theme="dark"] {
+    /* Backgrounds */
+    --pst-color-background: var(--id-background);
+    --pst-color-on-background: var(--id-foreground);
+    --pst-color-surface: var(--id-surface-1);
+    --pst-color-on-surface: var(--id-foreground);
+
+    /* Links & accents */
+    --pst-color-primary: var(--id-teal);
+    --pst-color-primary-text: var(--id-teal);
+    --pst-color-link: var(--id-teal);
+    --pst-color-link-hover: var(--id-secondary);
+    --link-color: var(--id-teal);
+
+    /* Borders */
+    --pst-color-border: var(--id-border-subtle);
+
+    /* Text */
+    --pst-color-text-base: var(--id-foreground);
+    --pst-color-text-muted: var(--id-muted-text);
+
+    /* Sidebar */
+    --pst-color-sidebar-background: var(--id-background);
+    --pst-color-sidebar-background-border: var(--id-border-subtle);
+
+    /* Inline code */
+    --pst-color-inline-code: var(--id-teal);
+    --pst-color-inline-code-bg: var(--id-surface-1);
+
+    /* Target highlight (anchored sections) */
+    --pst-color-target: rgba(var(--id-teal-rgb), 0.15);
+
+    /* sphinx-design cards */
+    --sd-color-card-background: var(--id-surface-1);
+    --sd-color-card-border: var(--id-border-subtle);
+
+    /* Admonitions */
+    --pst-color-info: var(--id-teal);
+}
+
+
+/* ═══════════════════════════════════════════
+   LIGHT THEME
+   ═══════════════════════════════════════════ */
+html[data-theme="light"] {
+    /* Backgrounds */
+    --pst-color-background: var(--id-bg-light);
+    --pst-color-on-background: var(--id-fg-light);
+    --pst-color-surface: var(--id-surface-2-light);
+    --pst-color-on-surface: var(--id-fg-light);
+
+    /* Links & accents — teal stays consistent */
+    --pst-color-primary: var(--id-secondary);
+    --pst-color-primary-text: var(--id-secondary);
+    --pst-color-link: var(--id-secondary);
+    --pst-color-link-hover: var(--id-teal);
+    --link-color: var(--id-secondary);
+
+    /* Borders */
+    --pst-color-border: var(--id-border-light);
+
+    /* Text */
+    --pst-color-text-base: var(--id-fg-light);
+    --pst-color-text-muted: var(--id-muted-text-light);
+
+    /* Sidebar */
+    --pst-color-sidebar-background: var(--id-surface-1-light);
+    --pst-color-sidebar-background-border: var(--id-border-light);
+
+    /* Inline code */
+    --pst-color-inline-code: var(--id-secondary);
+    --pst-color-inline-code-bg: var(--id-surface-1-light);
+
+    /* Target highlight */
+    --pst-color-target: rgba(var(--id-teal-rgb), 0.1);
+
+    /* sphinx-design cards */
+    --sd-color-card-background: var(--id-surface-2-light);
+    --sd-color-card-border: var(--id-border-light);
+
+    /* Admonitions */
+    --pst-color-info: var(--id-secondary);
+}
+
+
+/* ═══════════════════════════════════════════
+   HEADER & FOOTER — Daedalus near-black
+   ═══════════════════════════════════════════ */
+html[data-theme="dark"] .rocm-header-wrapper,
+html[data-theme="dark"] .rocm-footer-wrapper {
+    background-color: var(--id-background);
+}
+
+html[data-theme="light"] .rocm-header-wrapper {
+    background-color: var(--id-fg-light);
+}
+
+
+/* ═══════════════════════════════════════════
+   TYPOGRAPHY — Klavika display, refined scale
+   ═══════════════════════════════════════════ */
+/* Self-hosted Inter (SIL OFL) is the public-web fallback for Klavika, which
+   is licensed and cannot be redistributed. AMD machines with Klavika
+   installed still get it as progressive enhancement (first in the stack).
+   Variable font: one file covers weights 100–900. */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 100 900;
+    src: url("./fonts/inter/inter-latin-wght-normal.woff2") format("woff2-variations");
+}
+
+.bd-main h1,
+.bd-main h2,
+.bd-main h3,
+.bd-main h4 {
+    font-family: Klavika, 'Inter', system-ui, sans-serif;
+    line-height: 1.15;
+}
+
+.bd-main h1 {
+    font-weight: 700;
+    font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+    letter-spacing: -0.01em;
+    margin-bottom: 1.5rem;
+}
+
+.bd-main h2 {
+    font-weight: 500;
+    font-size: clamp(1.25rem, 3vw, 2rem);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.bd-main h3 {
+    font-weight: 500;
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    line-height: 1.2;
+}
+
+.bd-main h4 {
+    font-weight: 500;
+    font-size: clamp(0.9rem, 1.5vw, 1.15rem);
+    line-height: 1.3;
+}
+
+.bd-main p,
+.bd-main li {
+    line-height: 1.55;
+}
+
+
+/* ═══════════════════════════════════════════
+   EYEBROW PATTERN — teal rule + section label
+   Automatic on h2 elements (Daedalus signature)
+   ═══════════════════════════════════════════ */
+.bd-main h2::before {
+    content: "";
+    display: block;
+    width: clamp(1.5rem, 3vw, 2.5rem);
+    height: 2px;
+    background: var(--id-teal);
+    margin-bottom: 0.5rem;
+}
+
+html[data-theme="light"] .bd-main h2::before {
+    background: var(--id-secondary);
+}
+
+
+/* ═══════════════════════════════════════════
+   GLOW LINE — gradient divider after h1
+   ═══════════════════════════════════════════ */
+.bd-main h1::after {
+    content: "";
+    display: block;
+    height: 1px;
+    background: linear-gradient(90deg, var(--id-teal), transparent 70%);
+    opacity: 0.4;
+    margin-top: 0.75rem;
+}
+
+html[data-theme="light"] .bd-main h1::after {
+    background: linear-gradient(90deg, var(--id-secondary), transparent 70%);
+    opacity: 0.55;
+}
+
+.id-glow-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--id-teal), transparent);
+    opacity: 0.3;
+    margin: 2rem 0;
+}
+
+html[data-theme="light"] .id-glow-line {
+    opacity: 0.55;
+}
+
+
+/* ═══════════════════════════════════════════
+   DOT-GRID TEXTURE — Daedalus signature
+   1px teal dots, 8% opacity, 40px grid
+   ═══════════════════════════════════════════ */
+html[data-theme="dark"] .bd-main {
+    background-image: radial-gradient(
+        circle,
+        rgba(var(--id-teal-rgb), 0.06) 1px,
+        transparent 1px
+    );
+    background-size: 40px 40px;
+}
+
+
+/* ═══════════════════════════════════════════
+   HERO GRADIENT — subtle teal radial glow
+   Applies to first article section
+   ═══════════════════════════════════════════ */
+html[data-theme="dark"] .bd-article-container {
+    background: radial-gradient(
+        ellipse 80% 50% at 50% 0%,
+        rgba(var(--id-teal-rgb), 0.04) 0%,
+        transparent 70%
+    );
+}
+
+html[data-theme="light"] .bd-article-container {
+    background: radial-gradient(
+        ellipse 80% 50% at 50% 0%,
+        rgba(var(--id-teal-rgb), 0.05) 0%,
+        transparent 70%
+    );
+}
+
+
+/* ═══════════════════════════════════════════
+   CIRCUIT BACKGROUND — SVG grid for hero areas
+   Available as .id-circuit-bg utility
+   ═══════════════════════════════════════════ */
+.id-circuit-bg {
+    position: relative;
+    overflow: hidden;
+}
+
+.id-circuit-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpath d='M20 0v20h80v80h20' fill='none' stroke='%2300C2DE' stroke-width='0.5' opacity='0.12'/%3E%3Cpath d='M0 60h40v60' fill='none' stroke='%2300C2DE' stroke-width='0.5' opacity='0.08'/%3E%3Cpath d='M60 0v40h60' fill='none' stroke='%2300C2DE' stroke-width='0.5' opacity='0.08'/%3E%3Ccircle cx='20' cy='20' r='2' fill='%2300C2DE' opacity='0.15'/%3E%3Ccircle cx='100' cy='100' r='2' fill='%2300C2DE' opacity='0.15'/%3E%3Ccircle cx='60' cy='40' r='1.5' fill='%2300C2DE' opacity='0.1'/%3E%3Ccircle cx='40' cy='60' r='1.5' fill='%2300C2DE' opacity='0.1'/%3E%3C/svg%3E");
+    background-size: 120px 120px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+html[data-theme="light"] .id-circuit-bg::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpath d='M20 0v20h80v80h20' fill='none' stroke='%23636466' stroke-width='0.5' opacity='0.12'/%3E%3Cpath d='M0 60h40v60' fill='none' stroke='%23636466' stroke-width='0.5' opacity='0.08'/%3E%3Cpath d='M60 0v40h60' fill='none' stroke='%23636466' stroke-width='0.5' opacity='0.08'/%3E%3Ccircle cx='20' cy='20' r='2' fill='%23636466' opacity='0.15'/%3E%3Ccircle cx='100' cy='100' r='2' fill='%23636466' opacity='0.15'/%3E%3Ccircle cx='60' cy='40' r='1.5' fill='%23636466' opacity='0.1'/%3E%3Ccircle cx='40' cy='60' r='1.5' fill='%23636466' opacity='0.1'/%3E%3C/svg%3E");
+}
+
+
+/* ═══════════════════════════════════════════
+   CARDS — Daedalus surface hierarchy
+   ═══════════════════════════════════════════ */
+.sd-card {
+    border-radius: var(--id-radius-lg) !important;
+    transition: border-color 200ms ease, box-shadow 200ms ease;
+    border: 1px solid rgba(101, 107, 114, 0.25) !important;
+}
+
+html[data-theme="dark"] .sd-card {
+    background-color: var(--id-surface-1) !important;
+}
+
+html[data-theme="dark"] .sd-card:hover {
+    border-color: var(--id-teal) !important;
+    box-shadow: 0 12px 40px rgba(var(--id-teal-rgb), 0.12);
+}
+
+html[data-theme="light"] .sd-card:hover {
+    border-color: var(--id-secondary) !important;
+    box-shadow: 0 12px 40px rgba(var(--id-teal-rgb), 0.10);
+}
+
+.sd-card-header,
+.sd-card-footer {
+    border-color: rgba(101, 107, 114, 0.2) !important;
+}
+
+.sd-card-title {
+    font-family: Klavika, 'Inter', system-ui, sans-serif;
+    font-weight: 500;
+}
+
+
+/* ═══════════════════════════════════════════
+   ADMONITIONS — teal accent, surface bg
+   ═══════════════════════════════════════════ */
+html[data-theme="dark"] .admonition {
+    border-left-color: var(--id-teal);
+    background-color: var(--id-surface-1);
+    border-radius: 0 var(--id-radius-md) var(--id-radius-md) 0;
+}
+
+html[data-theme="light"] .admonition {
+    border-left-color: var(--id-secondary);
+    border-radius: 0 var(--id-radius-md) var(--id-radius-md) 0;
+}
+
+.admonition > .admonition-title {
+    font-family: Klavika, 'Inter', system-ui, sans-serif;
+    font-weight: 500;
+}
+
+
+/* ═══════════════════════════════════════════
+   CODE BLOCKS — Daedalus surface with border
+   ═══════════════════════════════════════════ */
+html[data-theme="dark"] .highlight {
+    background-color: var(--id-surface-1) !important;
+    border: 1px solid var(--id-border-subtle);
+    border-radius: var(--id-radius-md);
+}
+
+html[data-theme="light"] .highlight {
+    border: 1px solid var(--id-border-light);
+    border-radius: var(--id-radius-md);
+}
+
+html[data-theme="dark"] .highlight pre {
+    background-color: var(--id-surface-1) !important;
+}
+
+html[data-theme="dark"] code.literal {
+    background-color: var(--id-surface-1);
+    color: var(--id-teal);
+    padding: 0.1rem 0.35rem;
+    border-radius: var(--id-radius-sm);
+    font-size: 0.875em;
+    border: 1px solid var(--id-border-subtle);
+}
+
+html[data-theme="light"] code.literal {
+    background-color: var(--id-surface-1-light);
+    color: var(--id-secondary);
+    padding: 0.1rem 0.35rem;
+    border-radius: var(--id-radius-sm);
+    font-size: 0.875em;
+    border: 1px solid var(--id-border-light);
+}
+
+
+/* ═══════════════════════════════════════════
+   TABLES — teal header accent
+   ═══════════════════════════════════════════ */
+html[data-theme="dark"] .bd-main table thead th {
+    background-color: rgba(var(--id-teal-rgb), 0.12);
+    border-bottom: 2px solid var(--id-teal);
+    font-family: Klavika, 'Inter', system-ui, sans-serif;
+    font-weight: 500;
+}
+
+html[data-theme="light"] .bd-main table thead th {
+    background-color: rgba(var(--id-teal-rgb), 0.06);
+    border-bottom: 2px solid var(--id-secondary);
+    font-family: Klavika, 'Inter', system-ui, sans-serif;
+    font-weight: 500;
+}
+
+html[data-theme="dark"] .bd-main table tbody tr:nth-child(even) {
+    background-color: rgba(var(--id-teal-rgb), 0.03);
+}
+
+html[data-theme="dark"] .bd-main table td {
+    border-color: var(--id-border-subtle);
+}
+
+
+/* ═══════════════════════════════════════════
+   SIDEBAR — teal active indicator
+   ═══════════════════════════════════════════ */
+html[data-theme="dark"] .bd-sidebar-primary .current > a {
+    color: var(--id-teal);
+}
+
+html[data-theme="light"] .bd-sidebar-primary .current > a {
+    color: var(--id-secondary);
+}
+
+.bd-sidebar-primary .sidebar-primary-items__start {
+    border-right: 1px solid var(--id-border-subtle);
+}
+
+html[data-theme="light"] .bd-sidebar-primary .sidebar-primary-items__start {
+    border-right-color: var(--id-border-light);
+}
+
+
+/* ═══════════════════════════════════════════
+   BREADCRUMBS — muted, Daedalus style
+   ═══════════════════════════════════════════ */
+.bd-breadcrumbs a {
+    color: var(--id-muted-text) !important;
+    font-size: 0.8rem;
+}
+
+.bd-breadcrumbs a:hover {
+    color: var(--id-teal) !important;
+}
+
+html[data-theme="light"] .bd-breadcrumbs a:hover {
+    color: var(--id-secondary) !important;
+}
+
+
+/* ═══════════════════════════════════════════
+   SCROLL REVEAL — fade + slide-up entrance
+   ═══════════════════════════════════════════ */
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+
+/* ═══════════════════════════════════════════
+   SELECTION HIGHLIGHT — teal-tinted
+   ═══════════════════════════════════════════ */
+::selection {
+    background-color: rgba(var(--id-teal-rgb), 0.25);
+    color: inherit;
+}
+
+
+/* ═══════════════════════════════════════════
+   SCROLLBAR — dark theme styling
+   ═══════════════════════════════════════════ */
+html[data-theme="dark"] ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+html[data-theme="dark"] ::-webkit-scrollbar-track {
+    background: var(--id-background);
+}
+
+html[data-theme="dark"] ::-webkit-scrollbar-thumb {
+    background: var(--id-surface-2);
+    border-radius: 4px;
+}
+
+html[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+    background: var(--id-border);
+}
+
+
+/* ═══════════════════════════════════════════
+   LINKS — smooth transition
+   ═══════════════════════════════════════════ */
+.bd-main a {
+    transition: color 200ms ease;
+}
+
+/* Hide header anchor link symbol — eyebrow rule is the visual indicator */
+.bd-main .headerlink {
+    display: none !important;
+}
+
+.bd-main *:hover > .headerlink {
+    display: inline-block !important;
+    opacity: 0.35;
+    font-size: 0.7em;
+    margin-left: 0.4em;
+    color: var(--id-teal);
+    text-decoration: none;
+}
+
+html[data-theme="light"] .bd-main *:hover > .headerlink {
+    color: var(--id-secondary);
+}
+
+
+/* ═══════════════════════════════════════════
+   TOC (right sidebar) — refined styling
+   ═══════════════════════════════════════════ */
+html[data-theme="dark"] .bd-sidebar-secondary a.active {
+    color: var(--id-teal);
+}
+
+html[data-theme="light"] .bd-sidebar-secondary a.active {
+    color: var(--id-secondary);
+}
+
+.bd-sidebar-secondary a {
+    font-size: 0.8rem;
+    transition: color 200ms ease;
+}
+
+
+/* ═══════════════════════════════════════════
+   SEARCH HIGHLIGHT — teal accent
+   ═══════════════════════════════════════════ */
+.highlighted {
+    background-color: rgba(var(--id-teal-rgb), 0.2) !important;
+    color: inherit !important;
+}
+
+
+/* ═══════════════════════════════════════════
+   LANDING PAGE — hero, eyebrow, card layout
+   ═══════════════════════════════════════════ */
+
+/* Hero section */
+.id-landing-hero {
+    margin: -1.5rem -1.5rem 2rem -1.5rem;
+    padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 4rem) clamp(2.5rem, 6vw, 4rem);
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(101, 107, 114, 0.2);
+}
+
+.id-hero-gradient {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        ellipse 80% 70% at 50% 30%,
+        rgba(var(--id-teal-rgb), 0.06) 0%,
+        transparent 70%
+    );
+    pointer-events: none;
+}
+
+.id-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 780px;
+}
+
+.id-hero-content h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem) !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.02em !important;
+    margin-top: 0.75rem !important;
+    margin-bottom: 1.25rem !important;
+}
+
+/* Override eyebrow rule on hero h1 — hero has its own eyebrow label */
+.id-hero-content h1::before {
+    display: none !important;
+}
+
+.id-hero-content p {
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    color: var(--id-muted-text);
+    max-width: 600px;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+html[data-theme="light"] .id-hero-content p {
+    color: var(--id-muted-text-light);
+}
+
+/* Eyebrow label (standalone div, not ::before pseudo) */
+.id-eyebrow-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--id-teal);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.id-eyebrow-label::before {
+    content: "";
+    display: inline-block;
+    width: clamp(1.5rem, 3vw, 2.5rem);
+    height: 2px;
+    background: var(--id-teal);
+    flex-shrink: 0;
+}
+
+html[data-theme="light"] .id-eyebrow-label {
+    color: var(--id-secondary);
+}
+
+html[data-theme="light"] .id-eyebrow-label::before {
+    background: var(--id-secondary);
+}
+
+/* Section label (used above h2s on landing) */
+.id-section-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--id-teal);
+    margin-bottom: 0.35rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.id-section-label::before {
+    content: "";
+    display: inline-block;
+    width: 1.5rem;
+    height: 2px;
+    background: var(--id-teal);
+    flex-shrink: 0;
+}
+
+html[data-theme="light"] .id-section-label {
+    color: var(--id-secondary);
+}
+
+html[data-theme="light"] .id-section-label::before {
+    background: var(--id-secondary);
+}
+
+/* Override h2 ::before when preceded by .id-section-label */
+.id-section h2::before,
+.id-section-label + h2::before {
+    display: none !important;
+}
+
+/* Section wrapper */
+.id-section {
+    margin: 2rem 0;
+}
+
+/* Card icon wrapper — teal-tinted circle */
+.id-card-icon-wrap {
+    width: 72px;
+    height: 72px;
+    border-radius: var(--id-radius-lg);
+    background: rgba(var(--id-teal-rgb), 0.08);
+    border: 1px solid rgba(var(--id-teal-rgb), 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    transition: background 200ms ease, border-color 200ms ease;
+}
+
+.id-card-icon-wrap--inline {
+    flex-shrink: 0;
+    margin-bottom: 0;
+    margin-right: 1.5rem;
+}
+
+.id-card-icon {
+    color: var(--id-teal);
+}
+
+html[data-theme="light"] .id-card-icon {
+    color: var(--id-secondary);
+}
+
+html[data-theme="light"] .id-card-icon-wrap {
+    background: rgba(var(--id-teal-rgb), 0.06);
+    border-color: rgba(var(--id-teal-rgb), 0.15);
+}
+
+/* Journey card overrides */
+.id-journey-card {
+    padding: 1.5rem !important;
+}
+
+.id-journey-card .sd-card-body {
+    padding: 0 !important;
+}
+
+.id-journey-card:hover .id-card-icon-wrap {
+    background: rgba(var(--id-teal-rgb), 0.14);
+    border-color: rgba(var(--id-teal-rgb), 0.35);
+}
+
+/* Wide card (ecosystem) — horizontal layout */
+.id-wide-card .sd-card-body {
+    padding: 0 !important;
+}
+
+.id-wide-card-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+.id-wide-card-text {
+    flex: 1;
+}
+
+@media (max-width: 600px) {
+    .id-wide-card-inner {
+        flex-direction: column;
+    }
+
+    .id-card-icon-wrap--inline {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+}
+
+/* Tags */
+.id-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1rem;
+}
+
+.id-tag {
+    font-size: 0.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--id-radius-sm);
+    background: rgba(var(--id-teal-rgb), 0.1);
+    color: var(--id-teal);
+    border: 1px solid rgba(var(--id-teal-rgb), 0.2);
+    white-space: nowrap;
+}
+
+html[data-theme="light"] .id-tag {
+    background: rgba(var(--id-teal-rgb), 0.07);
+    color: var(--id-secondary);
+    border-color: rgba(var(--id-teal-rgb), 0.15);
+}
+
+
+/* ═══════════════════════════════════════════
+   NO-TRANSITIONS — theme switch helper
+   ═══════════════════════════════════════════ */
+.no-transitions,
+.no-transitions *,
+.no-transitions *::before,
+.no-transitions *::after {
+    transition: none !important;
+}
+
+
+/* ═══════════════════════════════════════════
+   DROPDOWNS (sphinx-design) — surface bg, teal accent on open
+   ═══════════════════════════════════════════ */
+html[data-theme="dark"] details.sd-dropdown {
+    background-color: var(--id-surface-1) !important;
+    border: 1px solid var(--id-border-subtle) !important;
+}
+
+html[data-theme="light"] details.sd-dropdown {
+    background-color: var(--id-surface-1-light) !important;
+    border: 1px solid var(--id-border-light) !important;
+}
+
+html[data-theme="dark"] details.sd-dropdown > .sd-summary-title {
+    background-color: var(--id-surface-1) !important;
+    color: var(--id-foreground) !important;
+    border-bottom: 1px solid transparent;
+}
+
+html[data-theme="light"] details.sd-dropdown > .sd-summary-title {
+    background-color: var(--id-surface-1-light) !important;
+    color: var(--id-fg-light) !important;
+    border-bottom: 1px solid transparent;
+}
+
+details.sd-dropdown[open] > .sd-summary-title {
+    border-bottom-color: var(--id-teal) !important;
+}
+
+html[data-theme="dark"] details.sd-dropdown > .sd-summary-content,
+html[data-theme="dark"] details.sd-dropdown .sd-card-body {
+    background-color: var(--id-background) !important;
+    color: var(--id-foreground) !important;
+}
+
+html[data-theme="light"] details.sd-dropdown > .sd-summary-content,
+html[data-theme="light"] details.sd-dropdown .sd-card-body {
+    background-color: var(--id-bg-light) !important;
+    color: var(--id-fg-light) !important;
+}
+
+details.sd-dropdown .sd-summary-state-marker svg {
+    fill: var(--id-teal);
+}
+
+
+/* ═══════════════════════════════════════════
+   TABS (sphinx-design) — surface panels, teal active tab
+   ═══════════════════════════════════════════ */
+html[data-theme="dark"] .sd-tab-set > input + label {
+    color: var(--id-foreground-muted, #c8ccd0);
+    border-bottom: 2px solid transparent;
+}
+
+html[data-theme="light"] .sd-tab-set > input + label {
+    color: var(--id-fg-light);
+    border-bottom: 2px solid transparent;
+}
+
+.sd-tab-set > input:checked + label {
+    color: var(--id-teal) !important;
+    border-bottom-color: var(--id-teal) !important;
+}
+
+html[data-theme="light"] .sd-tab-set > input:checked + label {
+    color: var(--id-secondary) !important;
+    border-bottom-color: var(--id-secondary) !important;
+}
+
+.sd-tab-set > input + label:hover {
+    color: var(--id-teal) !important;
+}
+
+html[data-theme="dark"] .sd-tab-set > .sd-tab-content {
+    background-color: var(--id-background) !important;
+    color: var(--id-foreground) !important;
+    border: 1px solid var(--id-border-subtle);
+    border-top-color: var(--id-teal);
+}
+
+html[data-theme="light"] .sd-tab-set > .sd-tab-content {
+    background-color: var(--id-bg-light) !important;
+    color: var(--id-fg-light) !important;
+    border: 1px solid var(--id-border-light);
+    border-top-color: var(--id-secondary);
+}
+
+/* Override PyData's .bd-content scoped rules so tab labels follow the
+   flavor surface palette (their default uses --pst-color-on-background
+   which the flavor remaps to a foreground/text color). */
+html[data-theme="dark"] .bd-content .sd-tab-set > label {
+    background-color: var(--id-surface-1) !important;
+    color: var(--id-foreground) !important;
+}
+
+html[data-theme="light"] .bd-content .sd-tab-set > label {
+    background-color: var(--id-surface-1-light) !important;
+    color: var(--id-fg-light) !important;
+}
+
+html[data-theme="dark"] .bd-content .sd-tab-set > input:checked + label {
+    background-color: var(--id-background) !important;
+    color: var(--id-teal) !important;
+    border-color: var(--id-teal) var(--id-teal) transparent !important;
+}
+
+html[data-theme="light"] .bd-content .sd-tab-set > input:checked + label {
+    background-color: var(--id-bg-light) !important;
+    color: var(--id-secondary) !important;
+    border-color: var(--id-secondary) var(--id-secondary) transparent !important;
+}
+
+/* Tab content panel — match base background, accent top border via active label */
+html[data-theme="dark"] .bd-content .sd-tab-set .sd-tab-content {
+    background-color: var(--id-background) !important;
+    border-color: var(--id-teal) !important;
+}
+
+html[data-theme="light"] .bd-content .sd-tab-set .sd-tab-content {
+    background-color: var(--id-bg-light) !important;
+    border-color: var(--id-border-light) !important;
+    border-top-color: var(--id-secondary) !important;
+}
