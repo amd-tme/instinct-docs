@@ -140,12 +140,13 @@ html[data-theme="light"] .rocm-header-wrapper {
 
 
 /* ═══════════════════════════════════════════
-   TYPOGRAPHY — Klavika display, refined scale
+   TYPOGRAPHY — Inter, refined scale
    ═══════════════════════════════════════════ */
-/* Self-hosted Inter (SIL OFL) is the public-web fallback for Klavika, which
-   is licensed and cannot be redistributed. AMD machines with Klavika
-   installed still get it as progressive enhancement (first in the stack).
-   Variable font: one file covers weights 100–900. */
+/* Self-hosted Inter (SIL OFL) is the single brand typeface for the public
+   web build. One variable font file covers weights 100–900, renders
+   identically across every OS, and carries no licensing constraints.
+   The teal eyebrow rules and design-system accents carry brand
+   distinctiveness — the typeface stays clean and legible. */
 @font-face {
     font-family: 'Inter';
     font-style: normal;
@@ -154,11 +155,16 @@ html[data-theme="light"] .rocm-header-wrapper {
     src: url("./fonts/inter/inter-latin-wght-normal.woff2") format("woff2-variations");
 }
 
+:root {
+    --id-font-display: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --id-font-body: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
 .bd-main h1,
 .bd-main h2,
 .bd-main h3,
 .bd-main h4 {
-    font-family: Klavika, 'Inter', system-ui, sans-serif;
+    font-family: var(--id-font-display);
     line-height: 1.15;
 }
 
@@ -329,7 +335,7 @@ html[data-theme="light"] .sd-card:hover {
 }
 
 .sd-card-title {
-    font-family: Klavika, 'Inter', system-ui, sans-serif;
+    font-family: var(--id-font-display);
     font-weight: 500;
 }
 
@@ -349,7 +355,7 @@ html[data-theme="light"] .admonition {
 }
 
 .admonition > .admonition-title {
-    font-family: Klavika, 'Inter', system-ui, sans-serif;
+    font-family: var(--id-font-display);
     font-weight: 500;
 }
 
@@ -397,14 +403,14 @@ html[data-theme="light"] code.literal {
 html[data-theme="dark"] .bd-main table thead th {
     background-color: rgba(var(--id-teal-rgb), 0.12);
     border-bottom: 2px solid var(--id-teal);
-    font-family: Klavika, 'Inter', system-ui, sans-serif;
+    font-family: var(--id-font-display);
     font-weight: 500;
 }
 
 html[data-theme="light"] .bd-main table thead th {
     background-color: rgba(var(--id-teal-rgb), 0.06);
     border-bottom: 2px solid var(--id-secondary);
-    font-family: Klavika, 'Inter', system-ui, sans-serif;
+    font-family: var(--id-font-display);
     font-weight: 500;
 }
 
@@ -917,4 +923,392 @@ html[data-theme="light"] .bd-content .sd-tab-set .sd-tab-content {
     background-color: var(--id-bg-light) !important;
     border-color: var(--id-border-light) !important;
     border-top-color: var(--id-secondary) !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   LANDING v2 — flat, image-free, System-Admin-first
+   Replaces the nested dropdown/tab/image-card layout.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ---- Body width: roomier, content-led ---- */
+.bd-main .bd-content .bd-article-container,
+.bd-main .bd-content .bd-article-container > .bd-article {
+    max-width: 1180px;
+}
+
+/* Kill the dot-grid + radial hero on the article container for a cleaner
+   canvas; the hero block owns the atmosphere now. */
+html[data-theme="dark"] .bd-main,
+html[data-theme="light"] .bd-main {
+    background-image: none;
+}
+html[data-theme="dark"] .bd-article-container,
+html[data-theme="light"] .bd-article-container {
+    background: transparent;
+}
+
+/* ───────────────── HERO ───────────────── */
+.id-hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--id-teal);
+    margin-bottom: 1rem;
+}
+html[data-theme="light"] .id-hero-eyebrow { color: var(--id-secondary); }
+
+.id-hero-eyebrow-rule {
+    width: 2rem;
+    height: 2px;
+    background: currentColor;
+    flex-shrink: 0;
+}
+
+/* Hero H1 — override the global eyebrow ::before + glow ::after */
+.bd-main h1 {
+    font-size: clamp(2.1rem, 5.2vw, 3.4rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    margin: 0 0 1.25rem;
+}
+.bd-main h1::before { display: none; }
+.bd-main h1::after {
+    content: "";
+    display: block;
+    height: 1px;
+    background: linear-gradient(90deg, var(--id-teal), transparent 60%);
+    opacity: 0.5;
+    margin-top: 1.5rem;
+    max-width: 640px;
+}
+html[data-theme="light"] .bd-main h1::after {
+    background: linear-gradient(90deg, var(--id-secondary), transparent 60%);
+}
+
+.id-hero-lede {
+    font-size: clamp(1.02rem, 1.5vw, 1.2rem);
+    line-height: 1.6;
+    color: var(--id-muted-text);
+    max-width: 720px;
+    margin: 0 0 1.75rem;
+}
+html[data-theme="light"] .id-hero-lede { color: var(--id-muted-text-light); }
+.id-hero-lede strong { color: var(--pst-color-text-base); font-weight: 600; }
+
+/* Hero buttons */
+.id-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+.id-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.25rem;
+    border-radius: var(--id-radius-md);
+    font-weight: 600;
+    font-size: 0.92rem;
+    text-decoration: none !important;
+    transition: transform 160ms ease, box-shadow 200ms ease,
+                background-color 200ms ease, border-color 200ms ease, color 200ms ease;
+    border: 1px solid transparent;
+}
+.id-btn svg { width: 1.05em; height: 1.05em; transition: transform 200ms ease; }
+.id-btn:hover svg { transform: translateX(3px); }
+
+.id-btn-primary {
+    background: var(--id-teal);
+    color: #06181c !important;
+    box-shadow: 0 6px 22px rgba(var(--id-teal-rgb), 0.28);
+}
+.id-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(var(--id-teal-rgb), 0.4);
+}
+html[data-theme="light"] .id-btn-primary {
+    background: var(--id-secondary);
+    color: #fff !important;
+    box-shadow: 0 6px 22px rgba(0, 125, 184, 0.28);
+}
+
+.id-btn-ghost {
+    background: transparent;
+    color: var(--pst-color-text-base) !important;
+    border-color: var(--id-border);
+}
+.id-btn-ghost:hover {
+    border-color: var(--id-teal);
+    color: var(--id-teal) !important;
+    transform: translateY(-2px);
+}
+html[data-theme="light"] .id-btn-ghost { border-color: var(--id-border-light); }
+html[data-theme="light"] .id-btn-ghost:hover {
+    border-color: var(--id-secondary);
+    color: var(--id-secondary) !important;
+}
+
+.id-glow-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(var(--id-teal-rgb), 0.5), transparent);
+    border: 0;
+    margin: 2.75rem 0;
+}
+
+/* ───────────────── DECK (section block) ───────────────── */
+.id-deck { margin: 0 0 3rem; }
+
+.id-deck-head { margin-bottom: 1.5rem; }
+
+.id-section-label {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--id-teal);
+    margin-bottom: 0.6rem;
+}
+.id-section-label::before {
+    content: "";
+    width: 1.6rem;
+    height: 2px;
+    background: currentColor;
+    flex-shrink: 0;
+}
+html[data-theme="light"] .id-section-label { color: var(--id-secondary); }
+
+.bd-main h2.id-deck-title {
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.5rem;
+}
+.bd-main h2.id-deck-title::before { display: none; }
+
+.id-deck-sub {
+    color: var(--id-muted-text);
+    max-width: 680px;
+    margin: 0;
+    font-size: 0.98rem;
+    line-height: 1.55;
+}
+html[data-theme="light"] .id-deck-sub { color: var(--id-muted-text-light); }
+
+/* Primary deck — System Administrators gets a tinted, bordered canvas
+   so the frequently-updated content reads as the hero of the page. */
+.id-deck--primary {
+    position: relative;
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    border-radius: var(--id-radius-xl);
+    border: 1px solid rgba(var(--id-teal-rgb), 0.18);
+    background:
+        radial-gradient(ellipse 70% 80% at 0% 0%, rgba(var(--id-teal-rgb), 0.06), transparent 60%),
+        var(--id-surface-1);
+    overflow: hidden;
+}
+.id-deck--primary::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--id-teal), transparent 55%);
+}
+html[data-theme="light"] .id-deck--primary {
+    border-color: rgba(var(--id-teal-rgb), 0.22);
+    background:
+        radial-gradient(ellipse 70% 80% at 0% 0%, rgba(var(--id-teal-rgb), 0.07), transparent 60%),
+        var(--id-surface-1-light);
+}
+
+/* Sub-group label inside a deck (Bare metal, Containers, …) */
+.id-subhead {
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--pst-color-text-base);
+    margin: 2rem 0 0.9rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(101, 107, 114, 0.22);
+}
+.id-subhead:first-of-type { margin-top: 0.5rem; }
+
+/* ───────────────── CARD GRID ───────────────── */
+.id-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(248px, 1fr));
+    gap: 0.9rem;
+}
+
+.id-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 1.15rem 1.2rem 1.25rem;
+    border-radius: var(--id-radius-lg);
+    border: 1px solid rgba(101, 107, 114, 0.22);
+    background: var(--id-background);
+    text-decoration: none !important;
+    color: inherit !important;
+    overflow: hidden;
+    transition: transform 180ms ease, border-color 200ms ease, box-shadow 220ms ease, background-color 200ms ease;
+}
+html[data-theme="light"] .id-card {
+    background: var(--id-surface-2-light);
+    border-color: var(--id-border-light);
+    box-shadow: 0 1px 2px rgba(16, 20, 22, 0.04);
+}
+/* On the tinted primary deck, lift cards onto a darker base for contrast */
+html[data-theme="dark"] .id-deck--primary .id-card { background: var(--id-background); }
+html[data-theme="light"] .id-deck--primary .id-card { background: #fff; }
+
+.id-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    box-shadow: inset 0 0 0 1px transparent;
+    transition: box-shadow 220ms ease;
+}
+.id-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(var(--id-teal-rgb), 0.55);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(var(--id-teal-rgb), 0.18);
+}
+html[data-theme="light"] .id-card:hover {
+    border-color: rgba(var(--id-teal-rgb), 0.5);
+    box-shadow: 0 14px 30px rgba(16, 20, 22, 0.1);
+}
+
+.id-card-ico {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: var(--id-radius-md);
+    background: rgba(var(--id-teal-rgb), 0.1);
+    border: 1px solid rgba(var(--id-teal-rgb), 0.22);
+    color: var(--id-teal);
+    margin-bottom: 0.95rem;
+    transition: background-color 200ms ease, border-color 200ms ease, transform 200ms ease;
+}
+.id-card-ico svg { width: 21px; height: 21px; }
+html[data-theme="light"] .id-card-ico { color: var(--id-secondary); }
+.id-card:hover .id-card-ico {
+    background: rgba(var(--id-teal-rgb), 0.16);
+    border-color: rgba(var(--id-teal-rgb), 0.45);
+    transform: scale(1.06);
+}
+
+.id-card-title {
+    font-family: var(--id-font-display);
+    font-weight: 600;
+    font-size: 1.02rem;
+    line-height: 1.25;
+    color: var(--pst-color-text-base);
+    margin-bottom: 0.4rem;
+}
+.id-card:hover .id-card-title { color: var(--id-teal); }
+html[data-theme="light"] .id-card:hover .id-card-title { color: var(--id-secondary); }
+
+.id-card-desc {
+    font-size: 0.86rem;
+    line-height: 1.5;
+    color: var(--id-muted-text);
+    flex: 1;
+}
+html[data-theme="light"] .id-card-desc { color: var(--id-muted-text-light); }
+.id-card-desc em { font-style: normal; color: var(--id-teal); font-weight: 600; }
+html[data-theme="light"] .id-card-desc em { color: var(--id-secondary); }
+
+.id-card-go {
+    position: absolute;
+    top: 1.15rem;
+    right: 1.1rem;
+    color: var(--id-muted-text);
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: opacity 200ms ease, transform 200ms ease, color 200ms ease;
+}
+.id-card-go svg { width: 18px; height: 18px; }
+.id-card:hover .id-card-go {
+    opacity: 1;
+    transform: translateX(0);
+    color: var(--id-teal);
+}
+html[data-theme="light"] .id-card:hover .id-card-go { color: var(--id-secondary); }
+
+/* ───────────────── VERTICALS BANNER (deprioritized) ───────────────── */
+.id-verticals-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    padding: 1.25rem 1.5rem;
+    border-radius: var(--id-radius-lg);
+    border: 1px dashed rgba(101, 107, 114, 0.4);
+    background: var(--id-surface-1);
+    text-decoration: none !important;
+    color: inherit !important;
+    transition: border-color 200ms ease, background-color 200ms ease;
+}
+html[data-theme="light"] .id-verticals-banner {
+    background: var(--id-surface-1-light);
+    border-color: var(--id-border-light);
+}
+.id-verticals-banner:hover { border-color: var(--id-teal); }
+html[data-theme="light"] .id-verticals-banner:hover { border-color: var(--id-secondary); }
+
+.id-vb-main { display: flex; flex-direction: column; gap: 0.25rem; }
+.id-vb-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--id-teal);
+}
+html[data-theme="light"] .id-vb-label { color: var(--id-secondary); }
+.id-vb-desc { font-size: 0.92rem; color: var(--id-muted-text); }
+html[data-theme="light"] .id-vb-desc { color: var(--id-muted-text-light); }
+
+.id-vb-go {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--id-teal);
+    white-space: nowrap;
+}
+html[data-theme="light"] .id-vb-go { color: var(--id-secondary); }
+.id-vb-go svg { width: 1.05em; height: 1.05em; transition: transform 200ms ease; }
+.id-verticals-banner:hover .id-vb-go svg { transform: translateX(4px); }
+
+/* ───────────────── RESPONSIVE ───────────────── */
+@media (max-width: 600px) {
+    .id-grid { grid-template-columns: 1fr; }
+    .id-deck--primary { padding: 1.25rem; }
+    .id-hero-actions .id-btn { flex: 1 1 auto; justify-content: center; }
+}
+
+/* ───────────────── REDUCED MOTION ───────────────── */
+@media (prefers-reduced-motion: reduce) {
+    .id-card, .id-card-ico, .id-card-go, .id-btn, .id-btn svg, .id-vb-go svg {
+        transition: none !important;
+    }
+    .id-card:hover { transform: none; }
 }

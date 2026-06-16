@@ -2,7 +2,7 @@ name: Deploy Docs to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [develop]
   workflow_dispatch:
 
 permissions:
@@ -29,7 +29,7 @@ jobs:
 
       - name: Build Sphinx docs
         env:
-          DOCS_BASE_URL: https://rocm.github.io/instinct-docs/
+          DOCS_BASE_URL: https://amd-tme.github.io/instinct-docs/
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: sphinx-build -b html docs/ docs/_build/html
 
