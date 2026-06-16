@@ -1130,8 +1130,15 @@ html[data-theme="light"] .id-deck--primary {
         var(--id-surface-1-light);
 }
 
-/* Sub-group label inside a deck (Bare metal, Containers, …) */
+/* Collapsible sub-group (Bare metal, Containers, …) — native <details>/<summary>,
+   open by default, no JS. Each group's card grid can be toggled by the user. */
+.id-group { margin: 0; }
+
+/* Sub-group label inside a deck — doubles as the <summary> toggle */
 .id-subhead {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
     font-size: 0.74rem;
     font-weight: 700;
     letter-spacing: 0.13em;
@@ -1140,8 +1147,43 @@ html[data-theme="light"] .id-deck--primary {
     margin: 2rem 0 0.9rem;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid rgba(101, 107, 114, 0.22);
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    transition: color 160ms ease, border-color 200ms ease;
 }
-.id-subhead:first-of-type { margin-top: 0.5rem; }
+.id-group:first-of-type .id-subhead { margin-top: 0.5rem; }
+
+/* Strip the native disclosure triangle across engines */
+.id-subhead::-webkit-details-marker { display: none; }
+.id-subhead::marker { content: ""; }
+
+/* Custom chevron — rotates when the group is open */
+.id-subhead::before {
+    content: "";
+    width: 0.62rem;
+    height: 0.62rem;
+    flex-shrink: 0;
+    border-right: 2px solid var(--id-teal);
+    border-bottom: 2px solid var(--id-teal);
+    transform: rotate(-45deg);
+    transition: transform 200ms ease;
+}
+.id-group[open] > .id-subhead::before { transform: rotate(45deg); }
+html[data-theme="light"] .id-subhead::before {
+    border-color: var(--id-secondary);
+}
+
+.id-subhead:hover { color: var(--id-teal); border-bottom-color: rgba(var(--id-teal-rgb), 0.4); }
+html[data-theme="light"] .id-subhead:hover { color: var(--id-secondary); }
+.id-subhead:focus-visible {
+    outline: 2px solid var(--id-teal);
+    outline-offset: 3px;
+    border-radius: 3px;
+}
+
+/* The grid sits inside the open <details>; give it breathing room below the summary */
+.id-group > .id-grid { margin-bottom: 0.5rem; }
 
 /* ───────────────── CARD GRID ───────────────── */
 .id-grid {
@@ -1307,7 +1349,8 @@ html[data-theme="light"] .id-vb-go { color: var(--id-secondary); }
 
 /* ───────────────── REDUCED MOTION ───────────────── */
 @media (prefers-reduced-motion: reduce) {
-    .id-card, .id-card-ico, .id-card-go, .id-btn, .id-btn svg, .id-vb-go svg {
+    .id-card, .id-card-ico, .id-card-go, .id-btn, .id-btn svg, .id-vb-go svg,
+    .id-subhead, .id-subhead::before {
         transition: none !important;
     }
     .id-card:hover { transform: none; }
