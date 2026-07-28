@@ -47,6 +47,3 @@ html_css_files = ["index.css"]
 external_toc_path = "./sphinx/_toc.yml"
 
 exclude_patterns = ['.venv']
-
-def setup(app):
-    app.add_css_file("css/index.css")
