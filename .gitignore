@@ -1,6 +1,7 @@
 .venv
 .vscode
 build
+.playwright-mcp/
 
 # documentation artifacts
 _build/
