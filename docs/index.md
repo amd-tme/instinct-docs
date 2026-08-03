@@ -2,6 +2,9 @@
 html_theme.sidebar_secondary.remove: true
 ---
 
+<div class="id-landing-layout">
+<div class="id-landing-main">
+
 <div class="id-hero-eyebrow">
   <span class="id-hero-eyebrow-rule"></span>AMD Instinct™ · Data Center GPU
 </div>
@@ -29,12 +32,12 @@ Everything you need to <strong>deploy, validate, and operate</strong> AMD Instin
 <div class="id-deck id-deck--primary">
 
 <div class="id-deck-head">
-  <div class="id-section-label">Start here · maintained continuously</div>
-  <h2 class="id-deck-title">System Administrators</h2>
+  <div class="id-section-label">Start here</div>
+  <h2 class="id-deck-title" id="system-administrators">System Administrators</h2>
   <p class="id-deck-sub">Deploy and run AMD Instinct GPUs on bare metal, in containers, and across clusters. These guides are the most frequently updated content on this site.</p>
 </div>
 
-<details class="id-group" open>
+<details class="id-group">
 <summary class="id-subhead">Bare metal</summary>
 <div class="id-grid">
 
@@ -83,7 +86,7 @@ Everything you need to <strong>deploy, validate, and operate</strong> AMD Instin
 </div>
 </details>
 
-<details class="id-group" open>
+<details class="id-group">
 <summary class="id-subhead">Containers &amp; orchestration</summary>
 <div class="id-grid">
 
@@ -125,7 +128,7 @@ Everything you need to <strong>deploy, validate, and operate</strong> AMD Instin
 </div>
 </details>
 
-<details class="id-group" open>
+<details class="id-group">
 <summary class="id-subhead">Cluster, cloud &amp; virtualization</summary>
 <div class="id-grid">
 
@@ -181,8 +184,7 @@ Everything you need to <strong>deploy, validate, and operate</strong> AMD Instin
 <div class="id-deck">
 
 <div class="id-deck-head">
-  <div class="id-section-label">Reference</div>
-  <h2 class="id-deck-title">Common Reference</h2>
+  <h2 class="id-deck-title" id="common-reference">Common Reference</h2>
   <p class="id-deck-sub">Architecture, programming models, and technical collateral that span every deployment.</p>
 </div>
 
@@ -227,15 +229,24 @@ Everything you need to <strong>deploy, validate, and operate</strong> AMD Instin
 
 </div>
 
-<!-- ════════════════ INDUSTRY SOLUTIONS — deprioritized, moving to dedicated site ════════════════ -->
+</div>
+<!-- /.id-landing-main -->
 
-<a class="id-verticals-banner" href="./vision/ai.html">
-  <span class="id-vb-main">
-    <span class="id-vb-label">Industry Solutions</span>
-    <span class="id-vb-desc">Computer Vision · Data Science · Finance · Life Science · Simulation &amp; Modeling — moving to a dedicated site.</span>
-  </span>
-  <span class="id-vb-go">
-    Browse solutions
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-  </span>
-</a>
+<aside class="id-page-rail" aria-label="On this page">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list" aria-hidden="true"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+      <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-administrators">System Administrators</a></li>
+      <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-reference">Common Reference</a></li>
+      <li class="toc-h2 nav-item toc-entry"><a class="reference external nav-link" href="https://github.com/ROCm/gsid-verticals-docs">Industries &amp; Verticals</a></li>
+    </ul>
+  </nav>
+</aside>
+
+</div>
+<!-- /.id-landing-layout -->
+
+<!-- Industries/Verticals no longer gets featured landing placement — see docs/sphinx/_toc.yml,
+     now a single external nav link like any other subpage, pending a dedicated repo + owner. -->

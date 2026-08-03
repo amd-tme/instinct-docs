@@ -8,7 +8,87 @@
     max-width: 1440px !important;
     width: 100% !important;
     margin: 0 auto !important;
-    contain: layout; 
+    contain: layout;
+}
+
+/* ─── Landing page only: reclaim the width freed by removing the primary
+   sidebar (see conf.py html_sidebars["index"]). Scoped via :has() on our
+   own .id-landing-layout wrapper so every other page is unaffected. ─── */
+.bd-main .bd-content .bd-article-container:has(.id-landing-layout) {
+    max-width: 1680px !important;
+}
+
+.id-landing-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 240px;
+    gap: 2.5rem;
+    align-items: start;
+}
+.id-landing-main {
+    min-width: 0;
+}
+
+/* Deliberate 4-per-row card grid on the landing page at desktop widths,
+   rather than leaving column count to auto-fill's guesswork. */
+@media (min-width: 1000px) {
+    .id-landing-main .id-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* "On this page" rail — reuses the same .bd-toc-nav/.page-toc classes and
+   markup shape as the interior-page Contents sidebar so it inherits the
+   site-wide Bootstrap scrollspy (data-bs-spy on <body>) and matches its
+   look, without depending on the theme's own (heading-driven) secondary
+   sidebar, which the landing page's raw-HTML sections don't populate. */
+.id-page-rail {
+    position: sticky;
+    top: calc(var(--pst-header-height, 4rem) + 1.5rem);
+    align-self: start;
+    max-height: calc(100vh - var(--pst-header-height, 4rem) - 3rem);
+    overflow-y: auto;
+    padding-top: 0.25rem;
+}
+.id-page-rail .page-toc.onthispage {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--id-muted-text);
+    margin-bottom: 0.75rem;
+}
+html[data-theme="light"] .id-page-rail .page-toc.onthispage {
+    color: var(--id-muted-text-light);
+}
+/* .bd-toc-nav never normally holds external links (the real Contents rail
+   is anchor-only), so the theme's external-link icon rule is scoped to
+   nav.bd-links and doesn't reach here — add it back for our one external
+   entry (Industries & Verticals) so it matches the sidebar's treatment. */
+.id-page-rail .bd-toc-nav a.reference.external::after {
+    content: var(--pst-icon-external-link);
+    font: var(--fa-font-solid);
+    font-size: 0.75em;
+    margin-left: 0.3em;
+}
+
+.id-page-rail .bd-toc-nav a.active {
+    color: var(--id-teal);
+    font-weight: 600;
+}
+html[data-theme="light"] .id-page-rail .bd-toc-nav a.active {
+    color: var(--id-secondary);
+}
+
+@media (max-width: 1200px) {
+    .id-landing-layout {
+        grid-template-columns: 1fr;
+    }
+    .id-page-rail {
+        display: none;
+    }
 }
 .small-sd-card-large.sd-card {}
 #buttonWrapper:hover {

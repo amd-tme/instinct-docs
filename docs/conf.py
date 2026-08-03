@@ -46,4 +46,9 @@ html_css_files = ["index.css"]
 # Table of contents
 external_toc_path = "./sphinx/_toc.yml"
 
+# Landing page only: sidebar content is redundant with the card grid it
+# already renders, so drop the nav column there and reclaim the width
+# (paired with the wider layout in index.css). Interior pages are unaffected.
+html_sidebars = {"index": []}
+
 exclude_patterns = ['.venv']

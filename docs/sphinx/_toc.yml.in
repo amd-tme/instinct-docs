@@ -105,67 +105,12 @@ subtrees:
     - url: https://rocm.docs.amd.com/projects/llvm-project/en/latest/conceptual/openmp.html
       title: OpenMP
 
+# Industries/Verticals: no assigned owner yet and slated to move to its own
+# repo, assumed for now to be gsid-verticals-docs (placeholder — update once
+# a real destination is confirmed). Local content under vision/, data-science/,
+# life-science/, finance/, isv-apps/ stays in this repo but is intentionally
+# left out of the nav until that migration happens.
 - caption: Industries/Verticals
   entries:
-                   
-    - file: vision/index.md
-      title: Computer Vision
-      subtrees:
-        - entries:
-          - file: vision/ai.md
-            title: Models and applications
-          - file: vision/decode.md
-            title: Decoding
-          - file: vision/preprocess.md
-            title: Image processing
-    - file: data-science/index.md
-      title: Data Science (ROCm-DS)
-      subtrees:
-        - entries:
-          - file: data-science/hipDF.md
-            title: hipDF
-          - file: data-science/hipGRAPH.md
-            title: hipGRAPH
-          - file: data-science/hipVS.md
-            title: hipVS
-          - file: data-science/hipMM.md
-            title: hipMM
-          - file: data-science/hipRAFT.md
-            title: hipRAFT
-    - file: life-science/index.md
-      title: Life Science (ROCm-LS)
-      subtrees:
-        - entries:
-          - file: life-science/hipCIM.md
-            title: hipCIM
-        - entries:
-          - file: life-science/MONAI.md
-            title: MONAI
-    - file: finance/index.md
-      title: Finance (ROCm-Finance)
-      subtrees:
-        - entries:
-          - file: finance/xgboost.md
-            title: XGBoost
-          - file: finance/lightgbm.md
-            title: LightGBM
-          - file: finance/thundergbm.md
-            title: ThunderGBM
-    - file: isv-apps/index.md
-      title: Simulation & Modeling Apps        
-      subtrees:
-        - entries:
-          - file: isv-apps/ansys-fluent.md
-            title: Fluent
-          - file: isv-apps/ansys-mechanical.md
-            title: Mechanical
-          - file: isv-apps/cadence-fidelity.md
-            title: Cadence Fidelity
-          - file: isv-apps/devito.md
-            title: DevitoPRO
-          - file: isv-apps/siemens.md
-            title: Siemens
-          - file: isv-apps/stone-ridge.md
-            title: Stone Ridge
-          - file: simulation/gsplat.md
-            title: GSplat     
+    - url: https://github.com/ROCm/gsid-verticals-docs
+      title: Industries & Verticals
