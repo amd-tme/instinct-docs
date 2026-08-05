@@ -25,7 +25,7 @@ copyright = "Copyright (c) 2024 Advanced Micro Devices, Inc. All rights reserved
 # Required settings
 html_theme = "rocm_docs_theme"
 html_theme_options = {
-    "flavor": "instinct",
+    "flavor": "instinct-design",
     "link_main_doc": True,
     "nav_secondary_items": {
         "Community": "https://github.com/ROCm/ROCm/discussions",
@@ -39,17 +39,16 @@ extensions = ["rocm_docs"]
 
 html_static_path = ['_static', 'images']
 
-# Instinct Design System flavor CSS/JS — loaded directly until the
-# instinct-design flavor is merged into rocm-docs-core upstream.
-# index.css is the landing-page card layout, kept after the flavor sheet
-# so its card rules continue to win on the index page.
-html_css_files = ["instinct-design.css", "index.css"]
-html_js_files = [("instinct-design.js", {"defer": "defer"})]
+# Landing-page card layout. Loaded after the instinct-design flavor's
+# own sheet so its card rules win on the index page.
+html_css_files = ["index.css"]
 
 # Table of contents
 external_toc_path = "./sphinx/_toc.yml"
 
-exclude_patterns = ['.venv']
+# Landing page only: sidebar content is redundant with the card grid it
+# already renders, so drop the nav column there and reclaim the width
+# (paired with the wider layout in index.css). Interior pages are unaffected.
+html_sidebars = {"index": []}
 
-def setup(app):
-    app.add_css_file("css/index.css")
+exclude_patterns = ['.venv']
