@@ -90,6 +90,82 @@ html[data-theme="light"] .id-page-rail .bd-toc-nav a.active {
         display: none;
     }
 }
+
+/* ─── "Show more" banner for System Administrators card grids (MAT-107) ───
+   Inserted by index.js after the first 3 `.id-card`s in a `.id-group`'s
+   `.id-grid`. Spans the full grid width so it always starts a new row,
+   whether or not the first 3 cards filled the previous row. Styled to sit
+   between `.id-card` (solid) and the deprioritized `.id-verticals-banner`
+   (dashed) in visual weight, matching the same dark/light token pattern
+   used throughout this stylesheet and instinct-design.css. ─── */
+.id-more-toggle {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border-radius: var(--id-radius-md, 8px);
+    border: 1px dashed rgba(101, 107, 114, 0.4);
+    background: var(--id-surface-1, #1d1f21);
+    color: var(--id-muted-text, #b4b9bc);
+    font-family: var(--id-font-display, inherit);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: border-color 200ms ease, background-color 200ms ease, color 200ms ease;
+}
+.id-more-toggle:hover {
+    border-color: var(--id-teal, #00c2de);
+    color: var(--id-teal, #00c2de);
+}
+.id-more-toggle:focus-visible {
+    outline: 2px solid var(--id-teal, #00c2de);
+    outline-offset: 2px;
+    border-color: var(--id-teal, #00c2de);
+    color: var(--id-teal, #00c2de);
+}
+html[data-theme="light"] .id-more-toggle {
+    background: var(--id-surface-1-light, #fafafa);
+    border-color: var(--id-border-light, #c2ccd7);
+    color: var(--id-muted-text-light, #5e5e5e);
+}
+html[data-theme="light"] .id-more-toggle:hover,
+html[data-theme="light"] .id-more-toggle:focus-visible {
+    border-color: var(--id-secondary, #007db8);
+    color: var(--id-secondary, #007db8);
+}
+
+.id-more-icon {
+    display: inline-flex;
+    align-items: center;
+}
+.id-more-icon svg {
+    width: 14px;
+    height: 14px;
+    transition: transform 200ms ease;
+}
+.id-more-toggle--open .id-more-icon svg {
+    transform: rotate(180deg);
+}
+
+/* Wrapper wraps the overflow cards (4th+) so JS can toggle them as a unit
+   while keeping them direct participants in the parent CSS grid. */
+.id-grid-more {
+    display: contents;
+}
+.id-grid-more[hidden] {
+    display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .id-more-toggle,
+    .id-more-icon svg {
+        transition: none !important;
+    }
+}
 .small-sd-card-large.sd-card {}
 #buttonWrapper:hover {
   border-color: hsla(231, 99%, 66%, 1);
