@@ -2,8 +2,8 @@
 
 Deploy and run AMD Instinct GPUs on bare metal, in containers, and across clusters.
 
-<details class="id-group" open>
-<summary class="id-subhead">Bare metal</summary>
+## Bare metal
+
 <div class="id-grid">
 
 ```{include} _cards/instinct-gpu-driver.md
@@ -25,10 +25,9 @@ Deploy and run AMD Instinct GPUs on bare metal, in containers, and across cluste
 ```
 
 </div>
-</details>
 
-<details class="id-group" open>
-<summary class="id-subhead">Containers &amp; orchestration</summary>
+## Containers & orchestration
+
 <div class="id-grid">
 
 ```{include} _cards/gpu-operator.md
@@ -47,10 +46,9 @@ Deploy and run AMD Instinct GPUs on bare metal, in containers, and across cluste
 ```
 
 </div>
-</details>
 
-<details class="id-group" open>
-<summary class="id-subhead">Cluster, cloud &amp; virtualization</summary>
+## Cluster, cloud & virtualization
+
 <div class="id-grid">
 
 ```{include} _cards/enterprise-ai.md
@@ -72,4 +70,3 @@ Deploy and run AMD Instinct GPUs on bare metal, in containers, and across cluste
 ```
 
 </div>
-</details>
