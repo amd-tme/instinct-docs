@@ -1,174 +1,75 @@
 # System Administrators
 
-::::{grid} 2 2 2 2
+Deploy and run AMD Instinct GPUs on bare metal, in containers, and across clusters.
 
-:::{grid-item-card}
-:padding: 1
-:img-top: ./images/System-Administrators-Bare-Metal-AMD-GPU-Driver.jpg
-:class-img-top: small-sd-card-img-top
-:class-body: small-sd-card
-:class: small-sd-card
-+++
-<a href="https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/" class="card-header-link">
-  <h2 class="card-header">Instinct GPU Driver</h2>
-</a>
-<p class="paragraph">Install and configure the GPU. Learn about logging including error codes.</p>
-:::
+<details class="id-group" open>
+<summary class="id-subhead">Bare metal</summary>
+<div class="id-grid">
 
-:::{grid-item-card}
-:padding: 1
-:img-top: ./images/System-Administrators-Bare-Metal-AMD-GPU-Partitioning.jpg
-:class-img-top: small-sd-card-img-top
-:class-body: small-sd-card
-:class: small-sd-card
-+++
-<a href="https://rocm.blogs.amd.com/software-tools-optimization/compute-memory-modes/README.html" class="card-header-link">
-  <h2 class="card-header">GPU Partitioning</h2>
-</a>
-<p class="paragraph">Learn how to split the compute units and memory to partition a GPU.</p>
-:::
+```{include} _cards/instinct-gpu-driver.md
+```
 
-:::{grid-item-card}
-:padding: 1
-:img-top: ./images/System-Administrators-Bare-Metal-AMD-AMD-SMI.jpg
-:class-img-top: small-sd-card-img-top
-:class-body: small-sd-card
-:class: small-sd-card
-+++
-<a href="https://rocm.docs.amd.com/projects/amdsmi/en/latest/" class="card-header-link">
-  <h2 class="card-header">AMD SMI</h2>
-</a>
-<p class="paragraph">The AMD System Management Interface (AMD SMI) library offers a unified tool for managing and monitoring GPUs, particularly in high-performance computing environments. It provides a user-space interface that allows applications to control GPU operations, monitor performance, and retrieve information about the system’s drivers and GPUs.</p>
-:::
+```{include} _cards/gpu-partitioning.md
+```
 
-:::{grid-item-card}
-:padding: 1
-:img-top: ./images/System-Administrators-Bare-Metal-AMD-Tools.jpg
-:class-img-top: small-sd-card-img-top
-:class-body: small-sd-card
-:class: small-sd-card
-+++
-<a href="https://rocm.docs.amd.com/projects/ROCmValidationSuite/en/latest/" class="card-header-link">
-  <h2 class="card-header">ROCmValidationSuite</h2>
-</a>
-<p class="paragraph">System validation and diagnosis</p>
-:::
+```{include} _cards/amd-smi.md
+```
 
-:::{grid-item-card}
-:padding: 1
-:img-top: ./images/system-acceptance.jpg
-:class-img-top: small-sd-card-img-top
-:class-body: small-sd-card
-:class: small-sd-card
-+++
-<a href="https://instinct.docs.amd.com/projects/system-acceptance/en/latest/" class="card-header-link">
-  <h2 class="card-header">MI300X System Acceptance Tests</h2>
-</a>
-<p class="paragraph"> Test the correct functioning and optimal performance of server systems equipped with AMD Instinct MI300X GPU accelerators.</p>
-:::
+```{include} _cards/rocm-validation-suite.md
+```
 
-:::{grid-item-card}
-:padding: 1
-:img-top: ./images/gpu-operator.jpg
-:class-img-top: small-sd-card-img-top
-:class-body: small-sd-card
-:class: small-sd-card
-+++
-<a href="https://instinct.docs.amd.com/projects/gpu-operator/en/latest/" class="card-header-link">
-  <h2 class="card-header">GPU Operator</h2>
-</a>
-<p class="paragraph">The AMD GPU Operator simplifies the deployment and management of AMD Instinct GPU accelerators within Kubernetes clusters.</p>
-:::
+```{include} _cards/customer-acceptance-guide.md
+```
 
-:::{grid-item-card}
-:padding: 1
-:img-top: ./images/device-plugin.jpg
-:class-img-top: small-sd-card-img-top
-:class-body: small-sd-card
-:class: small-sd-card
-+++
-<a href="https://instinct.docs.amd.com/projects/k8s-device-plugin/en/latest/" class="card-header-link">
-  <h2 class="card-header">Device Plugin</h2>
-</a>
-<p class="paragraph">Kubernetes (k8s) device plugin to enable registration of AMD GPU to a container cluster</p>
-:::
+```{include} _cards/cluster-validation-suite.md
+```
 
-:::{grid-item-card}
-:padding: 1
-:img-top: ./images/device-metrics-exporter.jpg
-:class-img-top: small-sd-card-img-top
-:class-body: small-sd-card
-:class: small-sd-card
-+++
-<a href="https://instinct.docs.amd.com/projects/device-metrics-exporter/en/latest/" class="card-header-link">
-  <h2 class="card-header">Device Metrics Exporter</h2>
-</a>
-<p class="paragraph">The AMD Device Metrics Exporter enables Prometheus-format metrics collection for AMD GPUs in HPC and AI environments. </p>
-:::
+</div>
+</details>
 
-:::{grid-item-card}
-:padding: 1
-:img-top: ./images/container-toolkit.jpg
-:class-img-top: small-sd-card-img-top
-:class-body: small-sd-card
-:class: small-sd-card
-+++
-<a href="https://instinct.docs.amd.com/projects/advanced-micro-devices-container-toolkit/en/latest/" class="card-header-link">
-  <h2 class="card-header">AMD Container Toolkit</h2>
-</a>
-<p class="paragraph">The AMD Container Toolkit enables seamless integration of AMD Instinct GPUs with Docker, offering streamlined GPU access, enhanced container runtime support, and optimized performance for ML and HPC workloads.</p>
-:::
+<details class="id-group" open>
+<summary class="id-subhead">Containers &amp; orchestration</summary>
+<div class="id-grid">
 
-:::{grid-item-card}
-:padding: 1
-:img-top: ./images/enterpriseAI.png
-:class-img-top: small-sd-card-img-top
-:class-body: small-sd-card
-:class: small-sd-card
-+++
-<a href="https://account.amd.com/en/forms/registration/enterpriseai-ea.html" class="card-header-link">
-  <h2 class="card-header">Enterprise AI</h2>
-</a>
-<p class="paragraph">Tools for enterprise customers for AI infrastructure management.</p>
-:::
+```{include} _cards/gpu-operator.md
+```
 
-:::{grid-item-card}
-:padding: 1
-:img-top: ./images/omnistat.jpg
-:class-img-top: small-sd-card-img-top
-:class-body: small-sd-card
-:class: small-sd-card
-+++
-<a href="https://amdresearch.github.io/omnistat/" class="card-header-link">
-  <h2 class="card-header">Omnistat</h2>
-</a>
-<p class="paragraph">Profile across the cluster.</p>
-:::
+```{include} _cards/network-operator.md
+```
 
-:::{grid-item-card}
-:padding: 1
-:img-top: ./images/telemetry.jpg
-:class-img-top: small-sd-card-img-top
-:class-body: small-sd-card
-:class: small-sd-card
-+++
-<a href="https://instinct.docs.amd.com/projects/gpu-cluster-networking/en/latest/" class="card-header-link">
-  <h2 class="card-header">Cluster Networking</h2>
-</a>
-<p class="paragraph">Optimize the network for Instinct GPU applications </p>
-:::
+```{include} _cards/device-plugin.md
+```
 
-:::{grid-item-card}
-:padding: 1
-:img-top: ./images/instinct-azure.jpg
-:class-img-top: small-sd-card-img-top
-:class-body: small-sd-card
-:class: small-sd-card
-+++
-<a href="https://instinct.docs.amd.com/projects/instinct-azure/latest/" class="card-header-link">
-  <h2 class="card-header">Instinct on Azure</h2>
-</a>
-<p class="paragraph">Get started with AMD Instinct on Azure</p>
-:::
+```{include} _cards/device-metrics-exporter.md
+```
 
-::::
+```{include} _cards/amd-container-toolkit.md
+```
+
+</div>
+</details>
+
+<details class="id-group" open>
+<summary class="id-subhead">Cluster, cloud &amp; virtualization</summary>
+<div class="id-grid">
+
+```{include} _cards/enterprise-ai.md
+```
+
+```{include} _cards/omnistat.md
+```
+
+```{include} _cards/cluster-networking.md
+```
+
+```{include} _cards/instinct-on-azure.md
+```
+
+```{include} _cards/virtualization-driver.md
+```
+
+```{include} _cards/amd-smi-virtualization.md
+```
+
+</div>
+</details>
