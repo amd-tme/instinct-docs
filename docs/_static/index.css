@@ -166,6 +166,18 @@ html[data-theme="light"] .id-more-toggle:focus-visible {
         transition: none !important;
     }
 }
+
+/* Section names are plain links to their subpage, not a collapse toggle
+   (see index.js) — drop instinct-design.css's disclosure-triangle chevron
+   so the link doesn't still read as a dropdown, and suppress the browser's
+   default anchor underline (never needed when this was a <summary>). */
+.id-subhead::before {
+    display: none;
+}
+.id-subhead {
+    text-decoration: none;
+}
+
 .small-sd-card-large.sd-card {}
 #buttonWrapper:hover {
   border-color: hsla(231, 99%, 66%, 1);
