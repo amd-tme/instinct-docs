@@ -37,7 +37,7 @@ Everything you need to <strong>deploy, validate, and operate</strong> AMD Instin
   <p class="id-deck-sub">Deploy and run AMD Instinct GPUs on bare metal, in containers, and across clusters. These guides are the most frequently updated content on this site.</p>
 </div>
 
-<details class="id-group">
+<details class="id-group" open>
 <summary class="id-subhead">Bare metal</summary>
 <div class="id-grid">
 
@@ -86,7 +86,7 @@ Everything you need to <strong>deploy, validate, and operate</strong> AMD Instin
 </div>
 </details>
 
-<details class="id-group">
+<details class="id-group" open>
 <summary class="id-subhead">Containers &amp; orchestration</summary>
 <div class="id-grid">
 
@@ -128,7 +128,7 @@ Everything you need to <strong>deploy, validate, and operate</strong> AMD Instin
 </div>
 </details>
 
-<details class="id-group">
+<details class="id-group" open>
 <summary class="id-subhead">Cluster, cloud &amp; virtualization</summary>
 <div class="id-grid">
 
