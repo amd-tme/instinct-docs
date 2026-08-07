@@ -55,4 +55,7 @@ external_toc_path = "./sphinx/_toc.yml"
 # (paired with the wider layout in index.css). Interior pages are unaffected.
 html_sidebars = {"index": []}
 
-exclude_patterns = ['.venv']
+# system-admin/_cards holds reusable `.id-card` HTML partials pulled in via
+# MyST {include} directives (see docs/system-admin/*.md). They aren't
+# standalone pages, so keep them out of document discovery / the toctree.
+exclude_patterns = ['.venv', 'system-admin/_cards/*']
