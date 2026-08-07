@@ -17,6 +17,16 @@
 .bd-main .bd-content .bd-article-container:has(.id-landing-layout) {
     max-width: 1680px !important;
 }
+/* Upstream instinct-design.css also caps the nested <article> itself (and
+   .bd-page-width, further up the tree) at 1180px for any page with a hero —
+   both need the same landing-page escape hatch as .bd-article-container
+   above, or the grid stays starved regardless of the container override. */
+.bd-main .bd-content .bd-article-container:has(.id-landing-layout) > .bd-article {
+    max-width: 1680px !important;
+}
+.bd-page-width:has(.id-landing-layout) {
+    max-width: 1680px !important;
+}
 
 .id-landing-layout {
     display: grid;
