@@ -11,21 +11,25 @@
     contain: layout;
 }
 
-/* ─── Landing page only: reclaim the width freed by removing the primary
-   sidebar (see conf.py html_sidebars["index"]). Scoped via :has() on our
-   own .id-landing-layout wrapper so every other page is unaffected. ─── */
+/* ─── Landing page only: give the card grid + "on this page" rail extra
+   room beyond the site's standard 1440px page width. The primary sidebar's
+   width is 20% of this container (theme default, see rocm_docs_theme's
+   custom.css), so widening it also widens the sidebar — 1790px leaves the
+   4-card grid below at a comfortable size, in the same ballpark as the
+   subpages' own card grid. Scoped via :has() on our own .id-landing-layout
+   wrapper so every other page is unaffected. ─── */
 .bd-main .bd-content .bd-article-container:has(.id-landing-layout) {
-    max-width: 1680px !important;
+    max-width: 1790px !important;
 }
 /* Upstream instinct-design.css also caps the nested <article> itself (and
    .bd-page-width, further up the tree) at 1180px for any page with a hero —
    both need the same landing-page escape hatch as .bd-article-container
    above, or the grid stays starved regardless of the container override. */
 .bd-main .bd-content .bd-article-container:has(.id-landing-layout) > .bd-article {
-    max-width: 1680px !important;
+    max-width: 1790px !important;
 }
 .bd-page-width:has(.id-landing-layout) {
-    max-width: 1680px !important;
+    max-width: 1790px !important;
 }
 
 .id-landing-layout {
@@ -38,8 +42,11 @@
     min-width: 0;
 }
 
-/* Deliberate 4-per-row card grid on the landing page at desktop widths,
-   rather than leaving column count to auto-fill's guesswork. */
+/* Deliberate 4-per-row card grid on the landing page at desktop widths.
+   The upstream default (auto-fill, minmax(248px, 1fr)) is what subpages
+   use, but here it would silently drop to 3 or 5 columns depending on
+   which deck a grid sits in (the tinted "Start Here" deck has its own
+   padding subpages don't), so pin it explicitly for a consistent look. */
 @media (min-width: 1000px) {
     .id-landing-main .id-grid {
         grid-template-columns: repeat(4, 1fr);
@@ -101,86 +108,10 @@ html[data-theme="light"] .id-page-rail .bd-toc-nav a.active {
     }
 }
 
-/* ─── "Show more" banner for System Administrators card grids (MAT-107) ───
-   Inserted by index.js after the first 3 `.id-card`s in a `.id-group`'s
-   `.id-grid`. Spans the full grid width so it always starts a new row,
-   whether or not the first 3 cards filled the previous row. Styled to sit
-   between `.id-card` (solid) and the deprioritized `.id-verticals-banner`
-   (dashed) in visual weight, matching the same dark/light token pattern
-   used throughout this stylesheet and instinct-design.css. ─── */
-.id-more-toggle {
-    grid-column: 1 / -1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    width: 100%;
-    padding: 0.7rem 1rem;
-    border-radius: var(--id-radius-md, 8px);
-    border: 1px dashed rgba(101, 107, 114, 0.4);
-    background: var(--id-surface-1, #1d1f21);
-    color: var(--id-muted-text, #b4b9bc);
-    font-family: var(--id-font-display, inherit);
-    font-size: 0.82rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    cursor: pointer;
-    transition: border-color 200ms ease, background-color 200ms ease, color 200ms ease;
-}
-.id-more-toggle:hover {
-    border-color: var(--id-teal, #00c2de);
-    color: var(--id-teal, #00c2de);
-}
-.id-more-toggle:focus-visible {
-    outline: 2px solid var(--id-teal, #00c2de);
-    outline-offset: 2px;
-    border-color: var(--id-teal, #00c2de);
-    color: var(--id-teal, #00c2de);
-}
-html[data-theme="light"] .id-more-toggle {
-    background: var(--id-surface-1-light, #fafafa);
-    border-color: var(--id-border-light, #c2ccd7);
-    color: var(--id-muted-text-light, #5e5e5e);
-}
-html[data-theme="light"] .id-more-toggle:hover,
-html[data-theme="light"] .id-more-toggle:focus-visible {
-    border-color: var(--id-secondary, #007db8);
-    color: var(--id-secondary, #007db8);
-}
-
-.id-more-icon {
-    display: inline-flex;
-    align-items: center;
-}
-.id-more-icon svg {
-    width: 14px;
-    height: 14px;
-    transition: transform 200ms ease;
-}
-.id-more-toggle--open .id-more-icon svg {
-    transform: rotate(180deg);
-}
-
-/* Wrapper wraps the overflow cards (4th+) so JS can toggle them as a unit
-   while keeping them direct participants in the parent CSS grid. */
-.id-grid-more {
-    display: contents;
-}
-.id-grid-more[hidden] {
-    display: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .id-more-toggle,
-    .id-more-icon svg {
-        transition: none !important;
-    }
-}
-
-/* Section names are plain links to their subpage, not a collapse toggle
-   (see index.js) — drop instinct-design.css's disclosure-triangle chevron
-   so the link doesn't still read as a dropdown, and suppress the browser's
-   default anchor underline (never needed when this was a <summary>). */
+/* Section names are plain links to their subpage, not a collapse toggle —
+   drop instinct-design.css's disclosure-triangle chevron so the link
+   doesn't still read as a dropdown, and suppress the browser's default
+   anchor underline (never needed when this was a <summary>). */
 .id-subhead::before {
     display: none;
 }

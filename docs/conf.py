@@ -43,17 +43,8 @@ html_static_path = ['_static', 'images']
 # own sheet so its card rules win on the index page.
 html_css_files = ["index.css"]
 
-# Landing page only: "show more" behavior for the System Administrators
-# card grids (see index.js for details). No-op on pages without .id-group.
-html_js_files = ["index.js"]
-
 # Table of contents
 external_toc_path = "./sphinx/_toc.yml"
-
-# Landing page only: sidebar content is redundant with the card grid it
-# already renders, so drop the nav column there and reclaim the width
-# (paired with the wider layout in index.css). Interior pages are unaffected.
-html_sidebars = {"index": []}
 
 # system-admin/_cards holds reusable `.id-card` HTML partials pulled in via
 # MyST {include} directives (see docs/system-admin/*.md). They aren't
