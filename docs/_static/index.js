@@ -1,16 +1,18 @@
 /**
  * Landing page — "show more" behavior for System Administrators card grids.
  *
- * MAT-49 made each subgroup (Bare metal, Containers & orchestration,
- * Cluster/cloud & virtualization) a native <details class="id-group">: the
- * whole grid was hidden until the <summary class="id-subhead"> was clicked.
+ * Each subgroup (Bare metal, Containers & orchestration, Cluster/cloud &
+ * virtualization) is a `.id-group` whose name (`.id-subhead`) is a plain
+ * link to that section's dedicated subpage — no collapse/expand behavior
+ * on the group itself (that used to be a native <details>/<summary>, but
+ * clicking the name to open/close a group conflated navigation with
+ * disclosure, so the name is now just a link and groups are always shown).
  *
- * MAT-107 keeps that whole-group collapse behavior (native, no JS needed)
- * but adds a partial reveal *inside* an open group: only the first 3 cards
- * show by default, followed by a "Show N more" banner that expands the
- * grid to reveal the rest (and can collapse it back down). This keeps every
- * group scannable at a glance without requiring a click just to see what's
- * inside, per MAT-107.
+ * This script only handles the partial reveal *inside* a group: only the
+ * first 3 cards show by default, followed by a "Show N more" banner that
+ * expands the grid to reveal the rest (and can collapse it back down).
+ * This keeps every group scannable at a glance without requiring a click
+ * just to see what's inside, per MAT-107.
  *
  * Markup produced per qualifying `.id-group > .id-grid` (grids with more
  * than 3 `.id-card` children):
@@ -94,19 +96,6 @@
         toggle.addEventListener("click", function () {
             setExpanded(toggle.getAttribute("aria-expanded") !== "true");
         });
-
-        // The "More" control only makes sense once its parent group is
-        // open. Re-collapse the overflow whenever the group itself is
-        // closed, so reopening the group always starts back at the
-        // top-3 view rather than resuming a stale expanded state.
-        const group = grid.closest(".id-group");
-        if (group) {
-            group.addEventListener("toggle", function () {
-                if (!group.open) {
-                    setExpanded(false);
-                }
-            });
-        }
     }
 
     function init() {

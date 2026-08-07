@@ -37,8 +37,8 @@ Everything you need to <strong>deploy, validate, and operate</strong> AMD Instin
   <p class="id-deck-sub">Deploy and run AMD Instinct GPUs on bare metal, in containers, and across clusters. These guides are the most frequently updated content on this site.</p>
 </div>
 
-<details class="id-group" open>
-<summary class="id-subhead">Bare metal</summary>
+<div class="id-group" open>
+<a class="id-subhead" href="system-admin/bare-metal.html">Bare metal</a>
 <div class="id-grid">
 
 <a class="id-card" href="https://instinct.docs.amd.com/projects/amdgpu-docs/en/latest/">
@@ -84,10 +84,10 @@ Everything you need to <strong>deploy, validate, and operate</strong> AMD Instin
 </a>
 
 </div>
-</details>
+</div>
 
-<details class="id-group" open>
-<summary class="id-subhead">Containers &amp; orchestration</summary>
+<div class="id-group" open>
+<a class="id-subhead" href="system-admin/co-tools.html">Containers &amp; orchestration</a>
 <div class="id-grid">
 
 <a class="id-card" href="https://instinct.docs.amd.com/projects/gpu-operator/en/latest/">
@@ -126,10 +126,10 @@ Everything you need to <strong>deploy, validate, and operate</strong> AMD Instin
 </a>
 
 </div>
-</details>
+</div>
 
-<details class="id-group" open>
-<summary class="id-subhead">Cluster, cloud &amp; virtualization</summary>
+<div class="id-group" open>
+<a class="id-subhead" href="system-admin/index.html#cluster-cloud-virtualization">Cluster, cloud &amp; virtualization</a>
 <div class="id-grid">
 
 <a class="id-card" href="https://account.amd.com/en/forms/registration/enterpriseai-ea.html">
@@ -175,7 +175,7 @@ Everything you need to <strong>deploy, validate, and operate</strong> AMD Instin
 </a>
 
 </div>
-</details>
+</div>
 
 </div>
 
