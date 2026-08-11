@@ -74,6 +74,8 @@ html[data-theme="light"] .id-sidebar-toggle-label:hover {
     color: var(--id-secondary);
 }
 .id-sidebar-toggle-label svg {
+    width: 18px;
+    height: 18px;
     transition: transform 0.2s ease-in-out;
 }
 .id-sidebar-toggle-input:checked ~ .id-sidebar-toggle-label svg {
