@@ -25,8 +25,6 @@ Everything you need to <strong>deploy, validate, and operate</strong> AMD Instin
   </a>
 </div>
 
-<div class="id-glow-line"></div>
-
 <!-- ════════════════ SYSTEM ADMINISTRATORS — primary, frequently updated ════════════════ -->
 
 <div class="id-deck id-deck--primary">
@@ -48,7 +46,7 @@ Everything you need to <strong>deploy, validate, and operate</strong> AMD Instin
   <span class="id-card-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
 </a>
 
-<a class="id-card" href="https://rocm.blogs.amd.com/software-tools-optimization/compute-memory-modes/README.html">
+<a class="id-card" href="https://rocm.docs.amd.com/projects/amdsmi/en/latest/conceptual/partition.html">
   <span class="id-card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg></span>
   <span class="id-card-title">GPU Partitioning</span>
   <span class="id-card-desc">Split compute units and memory to partition a single GPU.</span>
@@ -190,7 +188,7 @@ Everything you need to <strong>deploy, validate, and operate</strong> AMD Instin
 
 <div class="id-grid">
 
-<a class="id-card" href="./gpu-arch/gpu-arch.html">
+<a class="id-card" href="https://rocm.docs.amd.com/en/latest/reference/gpu-arch/index.html">
   <span class="id-card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M20 9h2M20 14h2M2 9h2M2 14h2"/></svg></span>
   <span class="id-card-title">Instinct Micro-architecture</span>
   <span class="id-card-desc">Hardware details for MI350, MI300, MI200, and MI100 accelerators.</span>
