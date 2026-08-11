@@ -13,7 +13,7 @@ subtrees:
             title: AMD-SMI
           - url: https://rocm.docs.amd.com/projects/cvs/en/latest/index.html
             title: Cluster Validation Suite                             
-          - url: https://rocm.blogs.amd.com/software-tools-optimization/compute-memory-modes/README.html
+          - url: https://rocm.docs.amd.com/projects/amdsmi/en/latest/conceptual/partition.html
             title: GPU Partitioning
           - url: https://instinct.docs.amd.com/projects/system-acceptance/en/latest/
             title: Instinct Customer Acceptance Guide                                  
