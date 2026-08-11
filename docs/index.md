@@ -5,6 +5,12 @@ html_theme.sidebar_secondary.remove: true
 <div class="id-landing-layout">
 <div class="id-landing-main">
 
+<input type="checkbox" id="id-sidebar-toggle" class="id-sidebar-toggle-input">
+<label for="id-sidebar-toggle" class="id-sidebar-toggle-label">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+  Site navigation
+</label>
+
 <div class="id-hero-eyebrow">
   <span class="id-hero-eyebrow-rule"></span>AMD Instinct™ · Data Center GPU
 </div>
@@ -24,6 +30,8 @@ Everything you need to <strong>deploy, validate, and operate</strong> AMD Instin
     Customer Acceptance Guide
   </a>
 </div>
+
+<div class="id-hero-spacer"></div>
 
 <!-- ════════════════ SYSTEM ADMINISTRATORS — primary, frequently updated ════════════════ -->
 
