@@ -12,24 +12,91 @@
 }
 
 /* ─── Landing page only: give the card grid + "on this page" rail extra
-   room beyond the site's standard 1440px page width. The primary sidebar's
-   width is 20% of this container (theme default, see rocm_docs_theme's
-   custom.css), so widening it also widens the sidebar — 1790px leaves the
-   4-card grid below at a comfortable size, in the same ballpark as the
-   subpages' own card grid. Scoped via :has() on our own .id-landing-layout
-   wrapper so every other page is unaffected. ─── */
+   room beyond the site's standard 1440px page width. The primary sidebar is
+   hidden by default here (see the .id-sidebar-toggle-input rules below), so
+   this 1432px cap is sized to match the main content's width in that default
+   state — the same effective width the card grid already had when the
+   sidebar used to always take its 20%-of-container cut out of a wider 1790px
+   box. If a visitor opts back into the sidebar, the grid shrinks to make
+   room for it rather than the page growing, which is an acceptable trade for
+   an opt-in control. Scoped via :has() on our own .id-landing-layout wrapper
+   so every other page is unaffected. ─── */
 .bd-main .bd-content .bd-article-container:has(.id-landing-layout) {
-    max-width: 1790px !important;
+    max-width: 1432px !important;
 }
 /* Upstream instinct-design.css also caps the nested <article> itself (and
    .bd-page-width, further up the tree) at 1180px for any page with a hero —
    both need the same landing-page escape hatch as .bd-article-container
    above, or the grid stays starved regardless of the container override. */
 .bd-main .bd-content .bd-article-container:has(.id-landing-layout) > .bd-article {
-    max-width: 1790px !important;
+    max-width: 1432px !important;
 }
 .bd-page-width:has(.id-landing-layout) {
-    max-width: 1790px !important;
+    max-width: 1432px !important;
+}
+
+/* The primary ("System Administrators" / "Common Reference" / ...) sidebar
+   duplicates the landing grid below it, so default it to collapsed here and
+   let visitors opt back in with the checkbox-driven toggle above. This can't
+   reuse the theme's own "Toggle primary sidebar" control (rocm_docs_theme's
+   toggle-primary-sidebar.html + custom.css) — that targets a checkbox
+   (input#__primary) from an older theme generation that no longer exists in
+   the pydata-sphinx-theme version this site runs, so the label is dead
+   markup on every page, not just this one. This is a plain checkbox hack
+   instead: the input lives inside .id-landing-main, and :has() reaches back
+   up to .bd-container (the nearest ancestor shared with .bd-sidebar-primary,
+   which lives in a separate branch of the DOM) to flip its display. */
+.id-sidebar-toggle-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    opacity: 0;
+}
+.id-sidebar-toggle-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--id-muted-text);
+    cursor: pointer;
+    margin-bottom: 1rem;
+    user-select: none;
+}
+html[data-theme="light"] .id-sidebar-toggle-label {
+    color: var(--id-muted-text-light);
+}
+.id-sidebar-toggle-label:hover {
+    color: var(--id-teal);
+}
+html[data-theme="light"] .id-sidebar-toggle-label:hover {
+    color: var(--id-secondary);
+}
+.id-sidebar-toggle-label svg {
+    transition: transform 0.2s ease-in-out;
+}
+.id-sidebar-toggle-input:checked ~ .id-sidebar-toggle-label svg {
+    transform: rotate(90deg);
+}
+/* Desktop only (matches the theme's own $breakpoint-sidebar-primary: lg /
+   960px, see pydata-sphinx-theme's _layout.scss) — below that width the
+   sidebar is already an off-canvas drawer opened via the theme's own mobile
+   hamburger toggle, which our checkbox has nothing to do with. Forcing
+   display:none unconditionally would fight that drawer and make it
+   impossible to open the sidebar at all on mobile. */
+@media (min-width: 960px) {
+    .bd-container:has(.id-landing-layout) .bd-sidebar-primary {
+        display: none;
+    }
+    .bd-container:has(.id-sidebar-toggle-input:checked) .bd-sidebar-primary {
+        display: flex;
+    }
+}
+@media (max-width: 959.98px) {
+    .id-sidebar-toggle-label {
+        display: none;
+    }
 }
 
 .id-landing-layout {
@@ -40,6 +107,14 @@
 }
 .id-landing-main {
     min-width: 0;
+}
+
+/* Plain vertical whitespace where the id-glow-line divider used to sit —
+   the divider itself is gone, but a bare margin-bottom on .id-hero-actions
+   read as too tight once it was removed. No visual mark, just breathing
+   room, roughly a <p> tag's worth. */
+.id-hero-spacer {
+    height: 10px;
 }
 
 /* Deliberate 4-per-row card grid on the landing page at desktop widths.
