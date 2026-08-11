@@ -92,6 +92,18 @@ html[data-theme="light"] .id-sidebar-toggle-label:hover {
     .bd-container:has(.id-sidebar-toggle-input:checked) .bd-sidebar-primary {
         display: flex;
     }
+    /* rocm_docs_theme's own "Toggle primary sidebar" label (for="__primary")
+       duplicates our toggle here — it turns out not to be fully dead: a
+       pydata-sphinx-theme script grabs the first .primary-toggle element on
+       the page by class (regardless of the stale `for` target) and wires it
+       to the mobile off-canvas drawer's real checkbox. But that drawer only
+       has a visual effect below this same 960px breakpoint, so on desktop
+       clicking it does nothing — pure duplicate clutter next to our working
+       toggle. Hide it here only; leave it alone below 960px where it's still
+       the sole way to open the sidebar drawer on the landing page. */
+    .bd-container:has(.id-landing-layout) label.primary-toggle {
+        display: none;
+    }
 }
 @media (max-width: 959.98px) {
     .id-sidebar-toggle-label {
